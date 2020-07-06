@@ -1,0 +1,65 @@
+---
+title: "ExerciciosPipe"
+author: "Vanessa Sidrim"
+date: "05/08/2020"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercício Pipe
+
+| 1. Reescreva a expressão abaixo utilizando o %>%.
+
+|      *round(mean(sum(1:10)/3), digits = 1)*
+
+|     **Dica:** utilize a função magrittr::divide_by(). Veja o help da função para mais informações.
+
+```{r}
+vignette(topic = "divide_by", package = "magrittr")
+
+1:10 %>%
+  sum %>%
+  divide_by(3) %>%
+  round(digits = 1)
+```
+
+| 2. Reescreva o código abaixo utilizando o %>%.
+
+|       x <- rnorm(100)
+
+|       x.pos <- x[x>0]
+
+|       media <- mean(x.pos)
+
+|       saida <- round(media, 1)
+
+```{r}
+rnorm(100) %>%
+  extract(. > 0) %>%
+  mean %>%
+  round(digits = 2)
+```
+
+| 3. Sem rodar, diga qual a saída do código abaixo. Consulte o help das funções caso precise.
+
+|       2 %>% 
+|         add(2) %>% 
+|         c(6, NA) %>% 
+|         mean(na.rm = T) %>% 
+|         equals(5)
+
+```{r}
+# O resultado será TRUE
+
+# 1. Soma de 2 + 2 = 4
+# 2. O valor 4 será adicionado ao vetor junto com 6 e NA [c(4, 6, NA )]
+# 3. Média do vetor removendo o valor NA [(4 + 6)/2 = 5]
+# 4. Comparação se o resultado da média é igual a 5 (5 = 5)
+```
+
+
+  
+  
